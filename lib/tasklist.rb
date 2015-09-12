@@ -1,2 +1,2 @@
-class Tasklist < ActiveRecord::Base
+class Todo < ActiveRecord::Base
 end
