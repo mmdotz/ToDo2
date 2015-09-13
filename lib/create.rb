@@ -41,7 +41,7 @@ class Task
   def update_completed #need ids to print
     puts "Which task number would you like to mark complete?"
     number = gets.chomp.to_i
-    done = Todo.find_or_create_by(id: number)
+    done = Todo.find(number)
     done.update(completed: true)
   end
 
@@ -56,8 +56,8 @@ class Task
 
   def print_tasks_to_screen #can't get id's to print to screen
     puts "-*" * 25
-    Todo.all.each do |task, completed|
-      puts "To do: #{task.task} \t\tCompleted? : #{task.completed}"
+    Todo.all.each do |task, completed, id|
+      puts "#{task.id}. #{task.task} \t\tCompleted? : #{task.completed}"
     end
     puts "-*" * 25
   end
