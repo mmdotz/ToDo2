@@ -3,7 +3,11 @@
 ##This app can help track your tasks from Incomplete to Complete
 ### To run this file
 --Using Ruby
--- -- `ruby/bin/app.rb`
+-- -- `ruby bin/todo.rb`
+
+### The todo list will ask which task you would like to add to your list and assume you haven't done it yet! It will print out the tasks you have added to the list. Future feature: Mark an item as complete! Stay tuned!
+
+
 
 .
 ├── Gemfile             # Details which gems are required by the project
