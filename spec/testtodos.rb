@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../bin/todo.rb'
+require_relative '../lib/create.rb'
 
 
 class TestTodos < Minitest::Test
