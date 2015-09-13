@@ -55,7 +55,8 @@ class Task
     # taskbynumber = Todo.find(number) #or (id: number)?
     puts "Please enter the new task (edit)"
     edited_task = gets.chomp
-    done = Todo.find(number).replace(task: edited_task) #creating a new task not editing
+    done = Todo.find_by(id: number)
+    done.update(task: edited_task) #creating a new task not editing
     print_tasks_to_screen
   end
 
