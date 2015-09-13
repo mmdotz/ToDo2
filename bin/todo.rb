@@ -17,9 +17,12 @@ class Todo
     Todo.new(task: task).save
   end
 
+  def to_s
+    "Task: #{self.task}"
+  end
+
 end
 
-
-Todo.new.prompt_for_task  #this is not ineracting with the table
-
-
+new_list = Todo.new
+new_list.prompt_for_task
+new_list.each {|task| puts task}
