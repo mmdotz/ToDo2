@@ -22,11 +22,11 @@ class Task
 
 
   def print_tasks_to_screen
-    puts "-*" * 20
-    Todo.all.each do |task|
-      puts "To do: #{task.task}"
+    puts "-*" * 25
+    Todo.all.each do |task, completed|
+      puts "To do: #{task.task} \t\tCompleted? : #{task.completed}"
     end
-    puts "-*" * 20
+    puts "-*" * 25
   end
 
   # def print_task
