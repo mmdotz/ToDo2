@@ -1,28 +1,14 @@
-require_relative "../db/setup"
-require_relative '../lib/all'
-
-
-class Todo
+require_relative '../lib/create' #required!!
+require 'pry'
 
 
 
-  def prompt_for_task
-    puts "What task would you like to add to your list?"
-    task = gets.chomp
-    add_todo(task)
-    puts "You have added #{task} to your list."
-  end
+Task.new.prompt_for_task
+Task.new.print_tasks_to_screen
 
-  def add_todo(task)
-    Todo.new(task: task).save
-  end
+# a list of todos is an array of todos (row in table), not tasks
+#todo = Task.create(task: "feed the dog") to hardcode
+#todo.task is not a getter, only a setter
 
-  def to_s
-    "Task: #{self.task}"
-  end
-
-end
-
-new_list = Todo.new
-new_list.prompt_for_task
-new_list.each {|task| puts task}
+# ~> Errno::ENOENT
+# ~> No such file or directory @ rb_sysopen - config/database.yml
