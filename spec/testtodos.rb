@@ -20,11 +20,4 @@ class TestTodos < Minitest::Test
     assert_equal("What task would you like to add to your list?", Todo.new.prompt_for_task)
   end
 
-  def test_input
-    skip
-
-  end
-
-
-
 end
