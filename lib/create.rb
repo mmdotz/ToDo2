@@ -9,7 +9,7 @@ class Task
 
   def greeting
     #loop here
-    puts "Would you like to add (1) or update a task (2)?"
+    puts "Would you like to add (1), mark a task complete (2) or edit a task (3)?"
     answer = gets.chomp.to_i
     case answer
       when 1
@@ -17,6 +17,8 @@ class Task
       when 2
         print_tasks_to_screen
         update_completed
+      when 3
+        edit_task
       else
         puts "That is not a valid choice." #loop to start
     end
@@ -42,6 +44,15 @@ class Task
     done = Todo.find_or_create_by(id: number)
     done.update(completed: true)
   end
+
+  def edit_task
+    puts "Which task number would you like to change?"
+    number = gets.chomp.to_i
+    taskbynumber = Todo.find(number) #or (id: number)
+    puts "Please enter the edit"
+    edited_task = Todo.find_or_create_by(task: taskbynumber)
+  end
+
 
   def print_tasks_to_screen #can't get id's to print to screen
     puts "-*" * 25
