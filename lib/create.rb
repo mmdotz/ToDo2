@@ -9,7 +9,7 @@ class Task
 
   def greeting
     #loop here
-    puts "Would you like to add (1), mark a task complete (2) or edit a task (3)?"
+    puts "Would you like to add (1), mark a task complete (2), edit a task (3) or delete (4)?"
     answer = gets.chomp.to_i
     case answer
       when 1
@@ -17,8 +17,10 @@ class Task
       when 2
         print_tasks_to_screen
         update_completed
-      when 3
+      when 3 #not working
         edit_task
+      when 4
+        delete_task
       else
         puts "That is not a valid choice." #loop to start
     end
@@ -43,18 +45,31 @@ class Task
     number = gets.chomp.to_i
     done = Todo.find(number)
     done.update(completed: true)
+    print_tasks_to_screen
   end
 
-  def edit_task
+  def edit_task #not working
+    print_tasks_to_screen
     puts "Which task number would you like to change?"
     number = gets.chomp.to_i
-    taskbynumber = Todo.find(number) #or (id: number)
-    puts "Please enter the edit"
-    edited_task = Todo.find_or_create_by(task: taskbynumber)
+    # taskbynumber = Todo.find(number) #or (id: number)?
+    puts "Please enter the new task (edit)"
+    edited_task = gets.chomp
+    done = Todo.find(number).replace(task: edited_task) #creating a new task not editing
+    print_tasks_to_screen
   end
 
+  def delete_task
+    print_tasks_to_screen
+    puts "Which task number would you like to delete?"
+    number = gets.chomp.to_i
+    taskbynumber = Todo.find(number)
+    deleted = Todo.delete(taskbynumber)
+    print_tasks_to_screen
+    puts "Task #{number} -how to pull task from table? was deleted from your list."
+  end
 
-  def print_tasks_to_screen #can't get id's to print to screen
+  def print_tasks_to_screen
     puts "-*" * 25
     Todo.all.each do |task, completed, id|
       puts "#{task.id}. #{task.task} \t\tCompleted? : #{task.completed}"
