@@ -8,15 +8,17 @@ class Task
   end
 
   def greeting
+    #loop here
     puts "Would you like to add (1) or update a task (2)?"
     answer = gets.chomp.to_i
     case answer
       when 1
         prompt_for_task
       when 2
-        #update
+        print_tasks_to_screen
+        update_completed
       else
-        puts "That is not a valid choice."
+        puts "That is not a valid choice." #loop to start
     end
   end
 
@@ -26,6 +28,7 @@ class Task
     task = gets.chomp
     add_todo(task)
     puts "You have added '#{task}' to your list."
+    print_tasks_to_screen
   end
 
   def add_todo(task)
@@ -33,9 +36,14 @@ class Task
     @tasks << todo
   end
 
+  def update_completed #need ids to print
+    puts "Which task number would you like to mark complete?"
+    number = gets.chomp.to_i
+    done = Todo.find_or_create_by(id: number)
+    done.update(completed: true)
+  end
 
-
-  def print_tasks_to_screen
+  def print_tasks_to_screen #can't get id's to print to screen
     puts "-*" * 25
     Todo.all.each do |task, completed|
       puts "To do: #{task.task} \t\tCompleted? : #{task.completed}"
@@ -43,13 +51,10 @@ class Task
     puts "-*" * 25
   end
 
-
   #get clarification on this
   # def print_task
   #   @tasks.each |todo| #changed from task to todo, this is acting weird, changing colors of text beneath it
   #   todo.task
   # end
-
-
 end
 
