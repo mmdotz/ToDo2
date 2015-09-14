@@ -5,7 +5,7 @@
 --Using Ruby
 -- -- `ruby bin/todo.rb`
 
-### The todo list will ask which task you would like to add to your list and assume you haven't done it yet! It will print out the tasks you have added to the list. Future feature: Mark an item as complete! Stay tuned!
+### The ToDo app allows you to build a list of tasks you would like to complete. You may mark tasks as completed (true), edit a previously added task, or delete one. The list is printed out to the screen for easy viewing. Enjoy!
 
 
 

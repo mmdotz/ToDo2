@@ -32,6 +32,7 @@ class Task
     task = gets.chomp
     add_todo(task)
     puts "You have added '#{task}' to your list."
+    # print_tasks_to_screen
     print_tasks_to_screen
   end
 
@@ -80,8 +81,9 @@ class Task
 
   #get clarification on this
   # def print_task
-  #   @tasks.each |todo| #changed from task to todo, this is acting weird, changing colors of text beneath it
-  #   todo.task
+  #   @tasks.each do |todo| #changed from task to todo, this is acting weird, changing colors of text beneath it
+  #   puts todo.task
+  #   end
   # end
 end
 
