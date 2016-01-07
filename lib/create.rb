@@ -22,6 +22,8 @@ class Task
       when 4
         delete_task
       when 5
+        puts "Goodbye"
+        sleep(1)
         exit
       else
         puts "That is not a valid choice."
@@ -40,7 +42,7 @@ class Task
   end
 
   def add_todo(task)
-    todo = Todo.find_or_create_by(task: task) #todo variable here is only one row
+    todo = Todo.find_or_create_by(task: task)
     @tasks << todo
   end
 
@@ -85,10 +87,4 @@ class Task
     puts "-*" * 25
   end
 
-  #get clarification on this
-  # def print_task
-  #   @tasks.each do |todo| #changed from task to todo, this is acting weird, changing colors of text beneath it
-  #   puts todo.task
-  #   end
-  # end
 end
