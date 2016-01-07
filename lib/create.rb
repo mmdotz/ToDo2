@@ -9,7 +9,7 @@ class Task
 
   def greeting
     #loop here
-    puts "Would you like to add (1), mark a task complete (2), edit a task (3) or delete (4)?"
+    puts "Would you like to add (1), mark a task complete (2), edit a task (3), delete (4) or exit (5)?"
     answer = gets.chomp.to_i
     case answer
       when 1
@@ -21,8 +21,11 @@ class Task
         edit_task
       when 4
         delete_task
+      when 5
+        exit
       else
-        puts "That is not a valid choice." #loop to start
+        puts "That is not a valid choice."
+         #loop to start
     end
   end
 
@@ -32,8 +35,8 @@ class Task
     task = gets.chomp
     add_todo(task)
     puts "You have added '#{task}' to your list."
-    # print_tasks_to_screen
     print_tasks_to_screen
+    greeting
   end
 
   def add_todo(task)
@@ -41,7 +44,7 @@ class Task
     @tasks << todo
   end
 
-  def update_completed #need ids to print
+  def update_completed
     puts "Which task number would you like to mark complete?"
     number = gets.chomp.to_i
     done = Todo.find(number)
@@ -49,7 +52,7 @@ class Task
     print_tasks_to_screen
   end
 
-  def edit_task #not working
+  def edit_task
     print_tasks_to_screen
     puts "Which task number would you like to change?"
     number = gets.chomp.to_i
@@ -68,12 +71,12 @@ class Task
     taskbynumber = Todo.find(number)
     deleted = Todo.delete(taskbynumber)
     print_tasks_to_screen
-    puts "Task #{number} -how to pull task from table? was deleted from your list."
+    puts "Task #{number} was deleted from your list."
   end
 
   def print_tasks_to_screen
     puts "-*" * 25
-    Todo.all.each do |task, completed, id|
+    Todo.all.each do |task|
       puts "#{task.id}. #{task.task} \t\tCompleted? : #{task.completed}"
     end
     puts "-*" * 25
@@ -86,4 +89,3 @@ class Task
   #   end
   # end
 end
-
