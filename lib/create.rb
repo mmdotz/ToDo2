@@ -17,7 +17,7 @@ class Task
       when 2
         print_tasks_to_screen
         update_completed
-      when 3 #not working
+      when 3
         edit_task
       when 4
         delete_task
@@ -25,7 +25,7 @@ class Task
         exit
       else
         puts "That is not a valid choice."
-         #loop to start
+        greeting
     end
   end
 
@@ -50,18 +50,19 @@ class Task
     done = Todo.find(number)
     done.update(completed: true)
     print_tasks_to_screen
+    greeting
   end
 
   def edit_task
     print_tasks_to_screen
     puts "Which task number would you like to change?"
     number = gets.chomp.to_i
-    # taskbynumber = Todo.find(number) #or (id: number)?
-    puts "Please enter the new task (edit)"
+    puts "Please enter an edited version of #{number}"
     edited_task = gets.chomp
     done = Todo.find_by(id: number)
-    done.update(task: edited_task) #creating a new task not editing
+    done.update(task: edited_task)
     print_tasks_to_screen
+    greeting
   end
 
   def delete_task
@@ -72,9 +73,11 @@ class Task
     deleted = Todo.delete(taskbynumber)
     print_tasks_to_screen
     puts "Task #{number} was deleted from your list."
+    greeting
   end
 
   def print_tasks_to_screen
+    sleep(2)
     puts "-*" * 25
     Todo.all.each do |task|
       puts "#{task.id}. #{task.task} \t\tCompleted? : #{task.completed}"
